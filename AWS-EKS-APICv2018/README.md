@@ -1,7 +1,7 @@
 # How to install APIC v2018 in AWS EKS environment
 
 So you need to prepare the important
-(IBM API Connect (APIC))[https://www.ibm.com/support/knowledgecenter/SSMNED_2018/mapfiles/getting_started.html]
+[IBM API Connect (APIC)](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/mapfiles/getting_started.html)
 demo for your client? You would like to show all the features and possibilities
 which APIC provides and would like to set up the APIC demo environment in no
 time?
@@ -11,8 +11,7 @@ can be called by your clients during your presentation. These APIs should also
 be able to access the Internet so they can call any publicly available REST or
 SOAP services your client could ask you to use for the demo purposes.
 
-While such setup can take quite a lot of your time and effort, this article will
-show you how to do it as easily as possible within constrained time limits.
+While such setup can take quite a lot of your time and effort, this article will show you how to do it as easily as possible within constrained time limits.
 
 ## Local machine prerequisites
 
@@ -53,9 +52,9 @@ Docker version 19.03.5, build 633a0ea838
 If you want to use scripts here to setup your APIC v2018 in EKS:
 - prepare all required cli applications, and login to all environments you wish
   to use (docker, aws)
-- prepare (envfile)[./scripts/envfile] with proper values
+- prepare [envfile](./scripts/envfile) with proper values
 - cd to this directory
-- run the script (install-apic-in-new-eks.sh)[./install-apic-in-new-eks.sh]
+- run the script [install-apic-in-new-eks.sh](./install-apic-in-new-eks.sh)
 
 After initial installation you should be able to login to Cloud Manager using
 default username/password combination (admin/7iron-hide). Strating from there
@@ -86,7 +85,7 @@ EU (Ireland)
 In its first release, EKS provided managed Kubernetes control plane but the only
 way to use it was to manually add worker nodes to the cluster (EC2 instances
 created "by hand"). Fortunately, Amazon didn't stop there and
-(later provided managed node groups)[https://aws.amazon.com/blogs/containers/eks-managed-node-groups/]
+[later provided managed node groups](https://aws.amazon.com/blogs/containers/eks-managed-node-groups/)
 which makes EKS setup much easier. Even better than that, you don't have to use
 CloudFormation for this setup directly, there is a command-line tool (eksctl)
 which makes setup of EKS fast and easy (scripting anyone?).
@@ -130,13 +129,13 @@ After running the "eksctl create cluster" command and waiting for some time, the
 EKS cluster will be created and you can get a public DNS name for each node. You
 need that information (+ ssh private key) to connect to each node and increase
 max virtual memory parameter - otherwise, APIC won't successfully start because
-of (Elasticsearch requirements)[https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html].
+of [Elasticsearch requirements](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html).
 
 As you probably know, you won't be able to configure APIC if it doesn't have a
 proper email server configuration. There are activation emails you need to
 receive to properly setup APIM and Developer Portals. For test purposes, you
 don't have to use a fully-fledged SMTP service (for example AWS SES) but can get
-away with any kind of (test SMTP service such as a MailHog)[https://github.com/mailhog/MailHog].
+away with any kind of [test SMTP service such as a MailHog](https://github.com/mailhog/MailHog).
 Simply start your test SMTP server on one of the EC2 instances and use instance
 hostname later in APIC email server configuration.
 
@@ -144,8 +143,8 @@ hostname later in APIC email server configuration.
 
 After the initial EKS cluster setup, you will probably want to have a better
 insight into your Kubernetes (k8s) cluster. That is why you should probably install
-(k8s dashboard)[https://github.com/kubernetes/dashboard]> (and
-(metrics server)[https://github.com/kubernetes-sigs/metrics-server] as it's
+[k8s dashboard](https://github.com/kubernetes/dashboard)> (and
+[metrics server](https://github.com/kubernetes-sigs/metrics-server) as it's
 prerequisite). Installation is quite straight forward and you don't have to
 expose it to the world, you can just use `kubectl proxy` to access it for your
 administrative needs.
@@ -164,7 +163,7 @@ nginx-ingress comes into the picture. Properly installed helm is needed for this
 You could configure DNS under your control to properly resolve your nice and
 shiny domain name (something like "myclientdemo.mycompany.com") to ingress DNS
 name (something less memorable like "a7...a8.elb.region.amazonaws.com"). Or you
-could just use any wildcard DNS, for example (nip.io)[https://nip.io/] and use
+could just use any wildcard DNS, for example [nip.io](https://nip.io/) and use
 only 1 of IP addresses to which ingress DNS name resolves. Be warned though that
 you should wait for some time before getting proper IP address(es) for ingress
 DNS name - you need to wait a bit after deployment for DNS to propagate properly
