@@ -1,0 +1,27 @@
+info:
+  version: 1.0.0
+  title: test-product
+  name: test-product
+gateways:
+  - datapower-api-gateway
+plans:
+  default-plan:
+    rate-limits:
+      default:
+        value: 10/1minute
+    title: Default Plan
+    description: Default Plan
+    approval: false
+apis:
+  test-api1.0.0:
+    name: 'test-api:1.0.0'
+visibility:
+  view:
+    type: public
+    orgs: []
+    enabled: true
+  subscribe:
+    type: authenticated
+    orgs: []
+    enabled: true
+product: 1.0.0

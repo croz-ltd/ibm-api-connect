@@ -11,7 +11,8 @@ can be called by your clients during your presentation. These APIs should also
 be able to access the Internet so they can call any publicly available REST or
 SOAP services your client could ask you to use for the demo purposes.
 
-While such setup can take quite a lot of your time and effort, this article will show you how to do it as easily as possible within constrained time limits.
+While such setup can take quite a lot of your time and effort, this article will
+show you how to do it as easily as possible within constrained time limits.
 
 ## Local machine prerequisites
 
