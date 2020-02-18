@@ -1,0 +1,25 @@
+# Variables prepared by hand
+export CLUSTER_NAME=my-apic-eks
+export CLUSTER_NODES_NO=1
+export NAMESPACE="apic"
+
+export REGISTRY=AWS_ACCOUNT.dkr.ecr.REGION.amazonaws.com
+export APIC_IMAGES_PATH=../2018.4.1.9-ifix1.0/images
+
+export NODE_KEY_PRIV_PATH=my-apic-eks
+export NODE_KEY_PUB_PATH=my-apic-eks.pub
+
+# Variables changed by script, please don't change by hand
+export apic_dpm_tag=2018.4.1.9
+export apic_idg_tag=2018.4.1.9.315826-nonprod
+
+export ep_api=api.44.44.44.44.nip.io
+export ep_cm=cloud.44.44.44.44.nip.io
+export ep_apim=manager.44.44.44.44.nip.io
+export ep_consumer=consumer.44.44.44.44.nip.io
+export ep_gw=gw.44.44.44.44.nip.io
+export ep_gwd=gwd.44.44.44.44.nip.io
+export ep_ai=ai.44.44.44.44.nip.io
+export ep_ac=ac.44.44.44.44.nip.io
+export ep_padmin=padmin.44.44.44.44.nip.io
+export ep_portal=portal.44.44.44.44.nip.io

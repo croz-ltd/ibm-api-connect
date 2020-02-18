@@ -54,11 +54,22 @@ If you want to use scripts here to setup your APIC v2018 in EKS:
 - prepare all required cli applications, and login to all environments you wish
   to use (docker, aws)
 - prepare [envfile](./scripts/envfile) with proper values
+  - CLUSTER_NAME
+  - CLUSTER_NODES_NO
+  - NAMESPACE (probably just leave it as "apic")
+  - REGISTRY (AWS ECR repository prefix, for example: AWS_ACCOUNT.dkr.ecr.REGION.amazonaws.com)
+  - APIC_IMAGES_PATH (path to APIC, DataPower & DataPower monitor docker images)
+  - NODE_KEY_PRIV_PATH (ssh private key which will be used to connect to nodes)
+    - generate ssh key pair (using ssh-keygen)
+    - make sure file permissions are set properly (chmod 400 NODE_KEY_PRIV_PATH)
+  - NODE_KEY_PUB_PATH (ssh public key for NODE_KEY_PRIV_PATH)
 - cd to this directory
 - run the script [install-apic-in-new-eks.sh](./install-apic-in-new-eks.sh)
+- check CLUSTER_NAME/CLUSTER_NAME.md for installation details so you can use
+  your new APIC instance
 
 After initial installation you should be able to login to Cloud Manager using
-default username/password combination (admin/7iron-hide). Strating from there
+default username/password combination (admin/7iron-hide). Starting from there
 you can make initial configuration by hand (or you can even script that).
 
 ## Installation overview
