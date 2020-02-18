@@ -206,6 +206,9 @@ For DataPower and DataPower monitor a process of uploading consists of 4 steps
 For management, analytics and portal docker images apicup command-line tools
 help you to push proper images to AWS ECR. This makes a process of pushing all
 images in each APIC k8s archive much easier.
+The version of an apicup tool determines which version of APIC are you
+installing so make sure the apicup version you are using is the same as a
+version of downloaded APIC docker image archives.
 
 ### APIC installation using apicup comand line tool
 
