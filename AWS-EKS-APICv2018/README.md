@@ -265,5 +265,5 @@ Initial configuration should apply the following steps:
 
 These scripts are adapted from the work of my colleague
 [Miroslav Rešetar](https://github.com/mresetar) who used some of the
-configuration files created by
+configurations files created by
 [Chris Phillips](https://github.com/ChrisPhillips-cminion/APICv2018DevInstall).
