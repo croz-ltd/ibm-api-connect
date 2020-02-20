@@ -260,3 +260,10 @@ Initial configuration should apply the following steps:
   - Create demo client application
   - Subscribe demo client application to a product
   - Test API calls
+
+## Project roots
+
+These scripts are adapted from the work of my colleague
+[Miroslav Rešetar](https://github.com/mresetar) who used some of the
+configuration files created by
+[Chris Phillips](https://github.com/ChrisPhillips-cminion/APICv2018DevInstall).
