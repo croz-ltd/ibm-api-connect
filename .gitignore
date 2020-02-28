@@ -1,0 +1,5 @@
+local-install-apicv2018/apic/
+local-install-apicv2018/.vagrant/
+local-install-apicv2018/fakesmtp/emails
+local-install-apicv2018/fakesmtp/MailHog.log
+local-install-apicv2018/scripts/myinstall

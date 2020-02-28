@@ -1,0 +1,100 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.boot_timeout = 600
+
+  config.vm.hostname = "apic"
+  config.vm.define "apic"
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "apic"
+    # 24 * 1024 = 24576 MB
+    vb.memory = 24576
+    # We need 8 CPUs to run everything
+    vb.cpus = 8
+    # vb.gui = true
+  end
+
+  # config.ssh.forward_x11 = true
+  config.vm.network "private_network", ip: "10.0.0.100"
+  config.vm.network "forwarded_port", guest: 22, host: 2002, id: 'ssh'
+  config.vm.network "forwarded_port", guest: 9090, host: 9090, protocol: "tcp", id: 'dpui'
+  config.vm.network "forwarded_port", guest: 6443, host: 6443, protocol: "tcp", id: 'kubectl'
+  config.vm.network "forwarded_port", guest: 8001, host: 8001, protocol: "tcp", id: 'dashboard'
+
+  # Disable swap for kubernetes reasons
+  config.vm.provision "shell", inline: "swapoff -a"
+
+  # Disable swap permanently
+  config.vm.provision "disable_swap", type: "shell", inline: <<-SHELL
+    # Disabling swap
+    # https://docs.platform9.com/support/disabling-swap-kubernetes-node/
+
+    swapoff -a
+    sed -i.bak '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+  SHELL
+
+  config.vm.provision "set_max_map_count", type: "shell", inline: <<-SHELL
+    sudo sysctl -w vm.max_map_count=1048575
+    echo "vm.max_map_count = 1048575" | sudo tee -a /etc/sysctl.conf
+  SHELL
+
+  config.vm.provision "change_time_zone",
+    type: "shell",
+    preserve_order: true,
+    path: "bootstrap-timezone.sh"
+
+  config.vm.provision "enable_ntp",
+    type: "shell",
+    preserve_order: true,
+    inline: "sudo apt-get install -y ntp"
+
+  config.vm.provision "docker",
+    type: "shell",
+    preserve_order: true,
+    path: "bootstrap-docker.sh"
+  
+  config.vm.provision "kubectl",
+    type: "shell",
+    preserve_order: true,
+    path: "bootstrap-kubelete-kubectl-kubeadm.sh"
+
+  config.vm.provision "helm",
+    type: "shell",
+    preserve_order: true,
+    path: "bootstrap-helm.sh"
+
+  config.vm.provision "jq",
+    type: "shell",
+    preserve_order: true,
+    inline: "sudo apt-get install -y jq"
+
+  config.vm.provision "bashrc",
+    type: "shell",
+    preserve_order: true,
+    path: "change-bashrc.sh"
+
+  config.vm.provision "apicup",
+    type: "shell",
+    preserve_order: true,
+    privileged: false,
+    path: "bootstrap-apicup.sh" 
+
+  config.vm.provision "MailHog",
+    type: "shell",
+    preserve_order: true,
+    privileged: false,
+    path: "bootstrap-mailhog.sh" 
+
+end

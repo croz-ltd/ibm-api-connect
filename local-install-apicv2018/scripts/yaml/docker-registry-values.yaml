@@ -1,0 +1,44 @@
+# Default values for docker-registry.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+
+updateStrategy:
+   type: RollingUpdate
+   rollingUpdate:
+     maxSurge: 1
+     maxUnavailable: 0
+
+service:
+  name: registry
+  type: ClusterIP
+  port: 5000
+  annotations: {}
+ingress:
+  enabled: true
+  hosts:
+    - localhost
+persistence:
+  accessMode: 'ReadWriteOnce'
+  enabled: true
+  size: 20Gi
+  storageClass: velox-block
+storage: filesystem
+
+configData:
+  version: 0.1
+  log:
+    fields:
+      service: registry
+  storage:
+    cache:
+      blobdescriptor: inmemory
+  http:
+    addr: :5000
+    headers:
+      X-Content-Type-Options: [nosniff]
+  health:
+    storagedriver:
+      enabled: true
+      interval: 10s
+threshold: 3

@@ -1,0 +1,19 @@
+export NAMESPACE="apic"
+
+export admin_email="admin@apic.local"
+export admin_pass="Passw0rd!"
+export ep_api=api.10.0.0.100.nip.io
+export ep_apim=manager.10.0.0.100.nip.io
+export ep_cm=cloud.10.0.0.100.nip.io
+export ep_consumer=consumer.10.0.0.100.nip.io
+export ep_gw=gw.10.0.0.100.nip.io
+export ep_gwd=gwd.10.0.0.100.nip.io
+export ep_ai=ai.10.0.0.100.nip.io
+export ep_ac=ac.10.0.0.100.nip.io
+export ep_padmin=padmin.10.0.0.100.nip.io
+export ep_portal=portal.10.0.0.100.nip.io
+export smtpServer=10.0.0.100
+export smtpServerPort=2525
+export registry=localhost:80/apiconnect
+
+export ep_gwType=datapower-api-gateway #equals native GW, use datapower-gateway for classicibmcom
